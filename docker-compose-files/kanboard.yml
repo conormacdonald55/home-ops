@@ -6,9 +6,9 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - kanboard_data:/var/www/app/data
-      - kanboard_plugins:/var/www/app/plugins
-      - kanboard_ssl:/etc/nginx/ssl
+      - /mnt/pve/docker-data-nfs/apps/kanboard/data:/var/www/app/data
+      - /mnt/pve/docker-data-nfs/apps/kanboard/plugins:/var/www/app/plugins
+      - /mnt/pve/docker-data-nfs/apps/kanboard/ssl:/etc/nginx/ssl
     environment:
       DATABASE_URL: mysql://kanboard:kanboard-secret@db/kanboard
   db:
@@ -20,9 +20,4 @@ services:
       MYSQL_USER: kanboard
       MYSQL_PASSWORD: kanboard-secret
     volumes:
-    - db:/var/lib/mysql
-volumes:
-  kanboard_data:
-  kanboard_plugins:
-  kanboard_ssl:
-  db:
+      - /mnt/pve/docker-data-nfs/apps/mariadb/kanboard:/var/lib/mysql
