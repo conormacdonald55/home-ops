@@ -9,11 +9,13 @@ services:
       - /mnt/pve/docker-data-nfs/apps/kanboard/data:/var/www/app/data
       - /mnt/pve/docker-data-nfs/apps/kanboard/plugins:/var/www/app/plugins
       - /mnt/pve/docker-data-nfs/apps/kanboard/ssl:/etc/nginx/ssl
+    restart: unless-stopped
     environment:
       DATABASE_URL: mysql://kanboard:kanboard-secret@db/kanboard
   db:
     image: mariadb:latest
     command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: kanboard
