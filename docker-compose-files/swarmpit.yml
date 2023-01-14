@@ -10,6 +10,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
       - 888:8080
+    restart: unless-stopped  
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080"]
       interval: 60s
@@ -33,6 +34,7 @@ services:
     image: couchdb:2.3.0
     volumes:
       - /mnt/pve/docker-data-nfs/apps/couchdb/swarmpit/data:/opt/couchdb/data
+    restart: unless-stopped
     networks:
       - net
     deploy:
@@ -46,6 +48,7 @@ services:
 
   influxdb:
     image: influxdb:1.8
+    restart: unless-stopped
     volumes:
       - /mnt/pve/docker-data-nfs/apps/influxdb/swarmpit/data:/var/lib/influxdb
     networks:
@@ -63,6 +66,7 @@ services:
     image: swarmpit/agent:latest
     environment:
       - DOCKER_API_VERSION=1.35
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
