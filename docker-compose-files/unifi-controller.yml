@@ -25,8 +25,8 @@ services:
         publised: 10001
         protocol: udp
         mode: host
-      - target: 3478
-        publised: 3478
+      - target: 8080
+        publised: 8080
         protocol: tcp
         mode: host
    #   - 1900:1900/udp #optional
