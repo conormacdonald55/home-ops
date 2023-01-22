@@ -10,7 +10,7 @@ services:
   #    - MEM_LIMIT=1024 #optional
   #    - MEM_STARTUP=1024 #optional
     volumes:
-      -  /mnt/pve/docker-data-nfs/apps/unifi-controller/config2:/config
+      -  /mnt/pve/docker-data-nfs/apps/unifi-controller/config:/config
     ports:
       - 8443:8443
       - 3478:3478/udp
